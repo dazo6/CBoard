@@ -21,11 +21,13 @@ public class SolrServerFactory implements PooledObjectFactory<SolrClient> {
         }
     }
 
+    @Override
     public PooledObject<SolrClient> makeObject() throws Exception {
-        SolrClient solrClient = new LBHttpSolrClient(servers);
+        SolrClient solrClient = new LBHttpSolrClient.Builder().withBaseSolrUrls(servers).build();
         return new DefaultPooledObject(solrClient);
     }
 
+    @Override
     public void destroyObject(PooledObject<SolrClient> pool) throws Exception {
         SolrClient solrClient = pool.getObject();
         if (solrClient != null) {
@@ -34,14 +36,17 @@ public class SolrServerFactory implements PooledObjectFactory<SolrClient> {
         }
     }
 
+    @Override
     public void activateObject(PooledObject<SolrClient> pool) throws Exception {
         // TODO Auto-generated method stub
     }
 
+    @Override
     public void passivateObject(PooledObject<SolrClient> pool) throws Exception {
         // TODO Auto-generated method stub
     }
 
+    @Override
     public boolean validateObject(PooledObject<SolrClient> pool) {
         // TODO Auto-generated method stub
         return false;

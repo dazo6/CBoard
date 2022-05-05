@@ -1,5 +1,6 @@
 package org.cboard.dao;
 
+import org.apache.ibatis.annotations.Param;
 import org.cboard.pojo.DashboardRole;
 import org.cboard.pojo.DashboardRoleRes;
 import org.springframework.stereotype.Repository;
@@ -13,9 +14,9 @@ import java.util.List;
 public interface RoleDao {
     int save(DashboardRole role);
 
-    List<DashboardRole> getRoleList(String userId);
+    List<DashboardRole> getRoleList(@Param("0") String userId);
 
-    List<DashboardRole> getCurrentRoleList(String userId);
+    List<DashboardRole> getCurrentRoleList(@Param("0") String userId);
 
     List<DashboardRole> getRoleListAll();
 
@@ -25,15 +26,15 @@ public interface RoleDao {
 
     int saveRoleRes(DashboardRoleRes item);
 
-    int deleteRoleRes(String roleId);
+    int deleteRoleRes(@Param("0") String roleId);
 
-    int deleteRoleResByResId(Long resId,String resType);
+    int deleteRoleResByResId(@Param("0") Long resId, @Param("1") String resType);
 
-    List<Long> getRoleResByResIds(String userId, String resType);
+    List<Long> getRoleResByResIds(@Param("0") String userId, @Param("1") String resType);
 
-    DashboardRole getRole(String roleId);
+    DashboardRole getRole(@Param("0") String roleId);
 
-    int deleteRole(String roleId);
+    int deleteRole(@Param("0") String roleId);
 
-    List<DashboardRoleRes> getUserRoleResList(String userId, String resType);
+    List<DashboardRoleRes> getUserRoleResList(@Param("0") String userId, @Param("1") String resType);
 }

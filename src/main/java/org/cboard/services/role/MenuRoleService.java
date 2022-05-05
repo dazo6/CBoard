@@ -35,7 +35,7 @@ public class MenuRoleService {
     @Around("execution(* org.cboard.services.MenuService.getMenuList(..))")
     public Object getMenuList(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
         String userid = authenticationService.getCurrentUser().getUserId();
-        if (userid.equals(adminUserId)) {
+        if (userid == null || userid.equals(adminUserId)) {
             return proceedingJoinPoint.proceed();
         } else {
             final List<Long> menuIdList = menuDao.getMenuIdByUserRole(userid);

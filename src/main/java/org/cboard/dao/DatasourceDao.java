@@ -1,5 +1,6 @@
 package org.cboard.dao;
 
+import org.apache.ibatis.annotations.Param;
 import org.cboard.pojo.DashboardDatasource;
 import org.springframework.stereotype.Repository;
 
@@ -28,5 +29,5 @@ public interface DatasourceDao {
 
     int delete(Long id, String userId);
 
-    long checkDatasourceRole(String userId, Long datasourceId, String permissionPattern);
+    long checkDatasourceRole(@Param("0") String userId, @Param("1") Long datasourceId, @Param("2") String permissionPattern);
 }

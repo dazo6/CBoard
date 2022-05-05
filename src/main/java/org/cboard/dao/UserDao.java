@@ -1,5 +1,6 @@
 package org.cboard.dao;
 
+import org.apache.ibatis.annotations.Param;
 import org.cboard.pojo.DashboardUser;
 import org.cboard.pojo.DashboardUserRole;
 import org.springframework.stereotype.Repository;
@@ -14,7 +15,7 @@ import java.util.Map;
 public interface UserDao {
     int save(DashboardUser user);
 
-    int deleteUserById(String userId);
+    int deleteUserById(@Param("0") String userId);
 
     List<DashboardUser> getUserList();
 
@@ -26,13 +27,13 @@ public interface UserDao {
 
     List<DashboardUserRole> getUserRoleList();
 
-    DashboardUser getUserByLoginName(String loginName);
+    DashboardUser getUserByLoginName(@Param("0") String loginName);
 
-    int saveNewUser(String userId, String user_name, String loginName);
+    int saveNewUser(@Param("0") String userId, @Param("1") String user_name, @Param("2") String loginName);
 
-    int updateUserPassword(String userId, String passowrd, String newPassword);
+    int updateUserPassword(@Param("0") String userId, @Param("1") String passowrd, @Param("3") String newPassword);
 
-    int deleteUserRoleByRoleId(String roleId);
+    int deleteUserRoleByRoleId(@Param("0") String roleId);
 
     int deleteUserRoles(Map<String, Object> param);
 
