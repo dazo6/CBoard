@@ -213,11 +213,8 @@ public class SolrDataProvider extends DataProvider implements Aggregatable, Init
             servers[i] = "http://" + tempServers[i] + "/solr/" + collectionName;
         }
         SolrClient solrServer = null;
-        try {
-            solrServer = new LBHttpSolrClient(servers);
-        } catch (MalformedURLException e) {
-            LOG.error("", e);
-        }
+        LBHttpSolrClient.Builder builder = new LBHttpSolrClient.Builder().withBaseSolrUrls(servers);
+        solrServer = builder.build();
         return solrServer;
     }
 

@@ -1,5 +1,6 @@
 package org.cboard.dao;
 
+import org.apache.ibatis.annotations.Param;
 import org.cboard.pojo.DashboardCategory;
 import org.springframework.stereotype.Repository;
 
@@ -20,5 +21,5 @@ public interface CategoryDao {
 
     int update(DashboardCategory dashboardCategory);
 
-    int delete(Long id);
+    int delete(@Param("0") Long id);
 }

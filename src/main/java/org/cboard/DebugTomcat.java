@@ -2,20 +2,29 @@ package org.cboard;
 
 import java.io.File;
 
+import com.google.common.base.Charsets;
+import com.google.common.hash.Hashing;
 import org.apache.catalina.Context;
 import org.apache.catalina.core.AprLifecycleListener;
 import org.apache.catalina.core.StandardServer;
-import org.apache.catalina.deploy.ErrorPage;
 import org.apache.catalina.startup.Tomcat;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Import;
+import org.springframework.context.annotation.ImportResource;
 
 /**
  * Created by zhongjian on 11/17/16.
  */
+@SpringBootApplication
+@ImportResource({"classpath:spring.xml", "classpath:spring-mvc.xml", "classpath:spring-mybatis.xml", "classpath:spring-security.xml"})
 public class DebugTomcat {
 
     public static void main(String[] args) throws Exception {
 
-        int port = 7090;
+        System.out.println(Hashing.md5().newHasher().putString("123456", Charsets.UTF_8).hash().toString());
+        SpringApplication.run(DebugTomcat.class, args);
+        /*int port = 7090;
         if (args.length >= 1) {
             port = Integer.parseInt(args[0]);
         }
@@ -39,7 +48,7 @@ public class DebugTomcat {
 
         // tomcat start
         tomcat.start();
-        tomcat.getServer().await();
+        tomcat.getServer().await();*/
     }
 
 }

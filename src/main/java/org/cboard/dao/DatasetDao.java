@@ -1,5 +1,6 @@
 package org.cboard.dao;
 
+import org.apache.ibatis.annotations.Param;
 import org.cboard.pojo.DashboardDataset;
 import org.springframework.stereotype.Repository;
 
@@ -16,9 +17,9 @@ public interface DatasetDao {
 
     List<DashboardDataset> getAllDatasetList();
 
-    List<DashboardDataset> getDatasetList(String userId);
+    List<DashboardDataset> getDatasetList(@Param("0") String userId);
 
-    List<DashboardDataset> getDatasetListAdmin(String userId);
+    List<DashboardDataset> getDatasetListAdmin(@Param("0") String userId);
 
     int save(DashboardDataset dataset);
 
@@ -26,10 +27,10 @@ public interface DatasetDao {
 
     int update(DashboardDataset dataset);
 
-    int delete(Long id, String userId);
+    int delete(@Param("0") Long id, @Param("1") String userId);
 
-    DashboardDataset getDataset(Long id);
+    DashboardDataset getDataset(@Param("0") Long id);
 
-    long checkDatasetRole(String userId, Long widgetId, String permissionPattern);
+    long checkDatasetRole(@Param("0") String userId, @Param("1") Long widgetId, @Param("2") String permissionPattern);
 
 }
